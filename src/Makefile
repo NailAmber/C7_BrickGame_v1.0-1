@@ -32,8 +32,12 @@ dist: clean
 	tar -czf $(DIST_DIR).tar.gz $(DIST_DIR)
 	rm -rf $(DIST_DIR)
 
-dvi: clean
-	doxygen
+dvi: clean doxy
+	(cd ./doxygen/latex; sudo pdflatex refman.tex)
+#	(cd ./doxygen/latex; sudo latex refman.tex)
+	
+doxy: clean
+	sudo doxygen
 
 clean:
 	rm -rf *.a *.o *.gcno *.gcda unit_test *.css *.html *.gcov tetris *.txt ./doxygen
