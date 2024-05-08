@@ -34,7 +34,6 @@ dist: clean
 
 dvi: clean doxy
 	(cd ./doxygen/latex; sudo pdflatex refman.tex)
-#	(cd ./doxygen/latex; sudo latex refman.tex)
 	
 doxy: clean
 	sudo doxygen
