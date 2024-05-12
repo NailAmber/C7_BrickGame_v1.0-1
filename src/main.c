@@ -1,5 +1,5 @@
-#include "../gui/cli/brick_game_frontend.h"
-#include "./tetris/tetris.h"
+#include "./brick_game/tetris/tetris.h"
+#include "./gui/cli/brick_game_frontend.h"
 
 void tetris_game();
 

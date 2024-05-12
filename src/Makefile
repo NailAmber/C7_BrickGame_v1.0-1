@@ -11,7 +11,7 @@ TESTS=$(wildcard ./unit_tests/*.c)
 OBJ_FSM := tetris.o tetris_fsm.o tetris_backend.o
 OBJ_CLI := brick_game_frontend.o
 
-INSTALL_DIR = /usr/local/bin
+INSTALL_DIR = ./bin
 
 VERSION = 1.0
 TARGET = tetris
@@ -19,12 +19,14 @@ DIST_DIR = $(TARGET)-$(VERSION)
 DIST_SOURCES = ./Makefile ./unit_tests ./gui ./brick_game
 
 all: clean tetris
+	./tetris
 
 install: clean tetris
+	mkdir $(INSTALL_DIR)
 	cp tetris $(INSTALL_DIR)
 
-unistall:
-	rm -f $(INSTALL_DIR)/tetris
+uninstall:
+	rm -rf $(INSTALL_DIR)
 
 dist: clean 
 	mkdir -p $(DIST_DIR)
@@ -34,6 +36,7 @@ dist: clean
 
 dvi: clean doxy
 	(cd ./doxygen/latex; sudo pdflatex refman.tex)
+#	(cd ./doxygen/latex; sudo latex refman.tex)
 	
 doxy: clean
 	sudo doxygen
@@ -74,13 +77,13 @@ gcov_report: clean test
 	gcovr --html-details -o report.html -g
 
 format:
-	clang-format -n ./brick_game/tetris/*.h ./brick_game/tetris/*.c ./gui/cli/*.c ./gui/cli/*.h ./unit_tests/*.h ./unit_tests/*.c ./brick_game/*.c ./brick_game/*.h
+	clang-format -n ./brick_game/tetris/*.h ./brick_game/tetris/*.c ./gui/cli/*.c ./gui/cli/*.h ./unit_tests/*.h ./unit_tests/*.c ./brick_game/*.h *.c
 
 formati:
-	clang-format -i ./brick_game/tetris/*.h ./brick_game/tetris/*.c ./gui/cli/*.c ./gui/cli/*.h ./unit_tests/*.h ./unit_tests/*.c ./brick_game/*.c ./brick_game/*.h
+	clang-format -i ./brick_game/tetris/*.h ./brick_game/tetris/*.c ./gui/cli/*.c ./gui/cli/*.h ./unit_tests/*.h ./unit_tests/*.c ./brick_game/*.h *.c
 
 cppcheck:
-	cppcheck --enable=all --suppress=missingIncludeSystem --std=c11 ./brick_game/tetris/*.h ./brick_game/tetris/*.c ./gui/cli/*.c ./gui/cli/*.h ./unit_tests/*.h ./unit_tests/*.c ./brick_game/*.c ./brick_game/*.h
+	cppcheck --enable=all --suppress=missingIncludeSystem --std=c11 ./brick_game/tetris/*.h ./brick_game/tetris/*.c ./gui/cli/*.c ./gui/cli/*.h ./unit_tests/*.h ./unit_tests/*.c ./brick_game/*.h *.c
 
 valgrind:
 	valgrind --trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s  ./unit_test

@@ -26,9 +26,14 @@ void print_overlay(void) {
 
   mvprintw(0, 27, "NEXT");
   mvprintw(5, 27, "LEVEL");
-  mvprintw(9, 27, "SPEED");
-  mvprintw(13, 27, "SCORE");
-  mvprintw(17, 25, "HIGH SCORE");
+  mvprintw(8, 27, "SPEED");
+  mvprintw(11, 27, "SCORE");
+  mvprintw(14, 25, "HIGH SCORE");
+
+  mvprintw(17, 24, "ESC - exit");
+  mvprintw(18, 24, "BACKSPACE - pause");
+  mvprintw(19, 24, "arrows - move");
+  mvprintw(20, 24, "ENTER - rotate");
 
   mvprintw(10, 1, "Press ENTER to START");
 }
@@ -50,9 +55,9 @@ void print_rectangle(int top_y, int bottom_y, int left_x, int right_x) {
 }
 void print_stats(GameInfo_t *stats) {
   mvprintw(6, 29, "%d", stats->level);
-  mvprintw(10, 29, "%d", stats->speed);
-  mvprintw(14, 27, "%d", stats->score);
-  mvprintw(18, 26, "%d", stats->high_score);
+  mvprintw(9, 29, "%d", stats->speed);
+  mvprintw(12, 27, "%d", stats->score);
+  mvprintw(15, 26, "%d", stats->high_score);
 }
 void print_board(GameInfo_t *board) {
   for (int x = 0; x < 10; x++) {
