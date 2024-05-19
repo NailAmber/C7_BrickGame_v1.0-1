@@ -9,7 +9,7 @@ BrickGame is a popular handheld console from the 90s with several thousands of b
 
 The project must consist of two parts for implementing the Tetris game: a library that implements the game's logic, which can be connected to various GUIs in the future, and a terminal interface. The logic of the library must be implemented using finite-state machines.
 
-### Documentaru
+### Documentary
 Install doxygen for `dvi` make target (documentary)
 - Ubuntu:
 sudo apt install doxygen
